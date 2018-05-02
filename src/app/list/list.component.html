@@ -1,0 +1,19 @@
+<app-add  (close)="close($event)"></app-add>
+<table class="table table-hover">
+  <thead>
+  <tr>
+      <td>Customer Name</td>
+      <td>Customer Birthday</td>
+      <td colspan="2">Actions</td>
+  </tr>
+  </thead>
+
+  <tbody>
+      <tr *ngFor="let customer of customers">
+          <td>{{ customer.name.first }}  {{ customer.name.last }}</td>
+          <td>{{ customer.birthday | date:'yyyy-MM-dd'}}</td>
+          <td><a [routerLink]="['/edit', customer.customerID]" class="btn btn-primary">Edit</a></td>
+          <td><button (click)="deleteCustomer(customer.customerID)"  class="btn btn-danger">Delete</button></td>
+      </tr>
+  </tbody>
+</table>

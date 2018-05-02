@@ -1,0 +1,39 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="addCustomerForm">
+      {{ title }}
+    </div>
+    <div class="panel-body collapse" id="addCustomerForm" [ngbCollapse]="isCollapsed">
+      <form [formGroup] ="AngForm" novalidate (validSubmit)="add()" >
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" formControlName="first_name" [(ngModel)]="customer.name.first">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" formControlName="last_name" [(ngModel)]="customer.name.last" >
+        </div>
+        <div class="form-group">
+          <label>Birthday</label>
+          <div class= "input-group">
+            <input class="form-control" placeholder="yyyy-mm-dd" [minDate]="minDate" [maxDate]="maxDate"
+              formControlName="dob" [(ngModel)]="customer.birthday" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-addon" (click)="d.toggle()" >
+              DOB
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+            <label>Gender</label>
+            <div *ngFor="let gender of genders">
+                <label>
+                <input type="radio" formControlName="gender" [(ngModel)]="customer.gender" [value]="gender.value">
+                {{gender.display}}
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary" [disabled]="AngForm.pristine || AngForm.invalid" >Add</button>
+        </div>
+      </form>
+    </div>
+  </div>
