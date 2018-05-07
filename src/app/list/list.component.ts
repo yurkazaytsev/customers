@@ -23,7 +23,7 @@ export class ListComponent implements OnInit {
   }
 
   close(some) {
-    if(some){ this.getCustomers();}
+    if (some) { this.getCustomers(); }
   }
 
   getCustomers() {
